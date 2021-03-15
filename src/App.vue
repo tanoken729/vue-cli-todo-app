@@ -21,8 +21,8 @@
     </div>
     <h1>新規タスクの追加</h1>
     <div>
-      <form v-on:submit.prevent>
-          <input type="text" id="todo">
+      <form @submit.prevent>
+          <input type="text" v-model="comment">
           <input type="submit" value="送信" @click="addTodo">
       </form>
     </div>
@@ -34,12 +34,13 @@
 export default {
   data() {
     return {
+      comment: '',
       lists: []
     }
   },
   methods: {
     addTodo: function(){
-      this.lists.push(document.getElementById("todo").value);
+      this.lists.push(this.comment)
     },
   },
 };
