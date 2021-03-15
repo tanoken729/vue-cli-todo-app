@@ -15,7 +15,7 @@
           <td>{{ i }}</td>
           <td>{{ list }}</td>
           <td><button>作業中</button></td>
-          <td><button>削除</button></td>
+          <td><button @click="deleteList(i)">削除</button></td>
         </tr>
       </table>
     </div>
@@ -41,6 +41,9 @@ export default {
   methods: {
     addTodo: function(){
       this.lists.push(this.comment)
+    },
+    deleteList: function(i){
+      this.lists.splice(i,1)
     },
   },
 };
