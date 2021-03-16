@@ -43,7 +43,7 @@ export default {
       this.lists.push(this.comment)
     },
     deleteList: function(i){
-      this.lists.splice(i,1)
+      this.lists.splice(i, 1)
     },
   },
 };
