@@ -5,9 +5,9 @@
     </div>
     <div class="main">
       <div class="switch">
-        <label><input type="radio" name="change-displey" onclick="changeDispley();" checked>すべて</label>
-        <label><input type="radio" name="change-displey" onclick="changeDispley();" >作業中</label>
-        <label><input type="radio" name="change-displey" onclick="changeDispley();" >完了</label>
+        <label><input type="radio" name="change-displey" onclick="changeDispley()" checked>すべて</label>
+        <label><input type="radio" name="change-displey" onclick="changeDispley()" >作業中</label>
+        <label><input type="radio" name="change-displey" onclick="changeDispley()" >完了</label>
       </div>
       <div class="task">
         <table>
@@ -55,10 +55,10 @@ export default {
       }
       this.lists.push(todo)
     },
-    deleteList: function(i){
+    deleteList(i) {
       this.lists.splice(i, 1)
     },
-    changeState: function(i){
+    changeState(i) {
       this.lists[i].state = !this.lists[i].state
     }
   },
