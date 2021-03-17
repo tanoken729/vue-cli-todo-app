@@ -1,30 +1,39 @@
 <template>
   <div id="app">
-    <h1>Todoリスト</h1>
-    <div>
-      <label><input type="radio" name="change-displey" onclick="changeDispley();" checked>すべて</label>
-      <label><input type="radio" name="change-displey" onclick="changeDispley();" >作業中</label>
-      <label><input type="radio" name="change-displey" onclick="changeDispley();" >完了</label>
-      <table>
-        <tr>
-          <th>ID</th>
-          <th>コメント</th>
-          <th>状態</th>
-        </tr>
-        <tr v-for="(list, i) in lists" v-bind:key="i">
-          <td>{{ i }}</td>
-          <td>{{ list }}</td>
-          <td><button>作業中</button></td>
-          <td><button @click="deleteList(i)">削除</button></td>
-        </tr>
-      </table>
+    <div class="title">
+      <h1>Todoリスト</h1>
     </div>
-    <h1>新規タスクの追加</h1>
-    <div>
-      <form @submit.prevent>
-          <input type="text" v-model="comment">
-          <input type="submit" value="送信" @click="addTodo">
-      </form>
+    <div class="main">
+      <div class="switch">
+        <label><input type="radio" name="change-displey" onclick="changeDispley();" checked>すべて</label>
+        <label><input type="radio" name="change-displey" onclick="changeDispley();" >作業中</label>
+        <label><input type="radio" name="change-displey" onclick="changeDispley();" >完了</label>
+      </div>
+      <div class="task">
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>コメント</th>
+            <th>状態</th>
+          </tr>
+          <tr v-for="(list, i) in lists" v-bind:key="i">
+            <td>{{ i }}</td>
+            <td>{{ list.comment }}</td>
+            <td v-if="list.state"><button @click="changeState(i)">作業中</button></td>
+            <td v-else><button @click="changeState(i)">完了</button></td>
+            <td><button @click="deleteList(i)">削除</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="addTask">
+      <h1>新規タスクの追加</h1>
+        <div class="form">
+          <form @submit.prevent>
+              <input type="text" v-model="comment">
+              <input type="submit" value="送信" @click="addTodo">
+          </form>
+        </div>
     </div>
   </div>
 </template>
@@ -35,16 +44,23 @@ export default {
   data() {
     return {
       comment: '',
-      lists: []
+      lists: [],
     }
   },
   methods: {
     addTodo: function(){
-      this.lists.push(this.comment)
+      const todo = {
+        comment: this.comment,
+        state: true,
+      }
+      this.lists.push(todo)
     },
     deleteList: function(i){
       this.lists.splice(i, 1)
     },
+    changeState: function(i){
+      this.lists[i].state = !this.lists[i].state
+    }
   },
 };
 
