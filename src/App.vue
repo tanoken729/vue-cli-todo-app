@@ -5,14 +5,12 @@
     </div>
     <div class="main">
       <div class="switch">
-
         <ul class="show-list">
           <li v-for="item in items" :key="item.id">
             <input type="radio" name="show" :id="item.id" :value="item.value" v-model="show">
             <label :for="item.id">{{item.text}}</label>
           </li>
         </ul>
-
       </div>
       <div class="tasks">
         <table>
@@ -66,7 +64,6 @@ export default {
         state: true,
         id: this.lists.length
       }
-      // this.idNum++
       this.lists.push(todo)
       this.comment = '';
     },
