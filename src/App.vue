@@ -54,7 +54,6 @@ export default {
       lists: [],
       comment: '',
       show: 0,
-      idNum: 0,
     }
   },
   methods: {
